@@ -13,7 +13,7 @@ gulp.task('start', ['css'], function() {
 
 gulp.task('css', function() {
   return gulp
-    .src([path.join('src', '*.scss')])
+    .src([path.join('src', 'flex-grid.scss')])
     .pipe($.sass({ sourceComments: true }).on('error', $.sass.logError))
     .pipe(
       $.autoprefixer({

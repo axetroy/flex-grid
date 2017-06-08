@@ -1,165 +1,136 @@
-// 换行类型列表
-$wrap-list: wrap nowrap wrap-reverse;
+@import "var";
+@import "media-query";
 
-$align-item-list: flex-start flex-end center baseline stretch;
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
 
-$align-content-list: flex-start flex-end center space-between space-around stretch;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-$justify-content-list: flex-start flex-end center space-between space-around;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 
-$screen-xs-max: 768px;
-$screen-sm-min: 768px;
-$screen-md-min: 992px;
-$screen-lg-min: 1200px;
+.container, .container-fluid {
+  padding-right: $padding;
+  padding-left: $padding;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+.container {
+  max-width: 100%;
+}
 
 .row {
   flex-direction: row;
-  margin-left: -15px;
-  margin-right: -15px;
 }
 
 .col {
   flex-direction: column;
-  margin-left: -15px;
-  margin-right: -15px;
 }
 
 .col, .row {
   display: flex;
+  margin-left: -$padding;
+  margin-right: -$padding;
   &::after, &::before {
     content: "";
     clear: both;
   }
+}
 
-  // 换行
-  @each $wrapWay in $wrap-list {
-    &.#{$wrapWay} {
-      flex-wrap: $wrapWay
-    }
+// 排序
+@for $i from 0 through $grid {
+  .order-#{$i} {
+    order: $i
   }
+}
 
-  // 排序
-  @for $i from 0 through 10 {
-    > .order-#{$i} {
-      order: $i
-    }
+*[class^=col-] {
+  position: relative;
+  min-height: 1px;
+  padding-right: $padding;
+  padding-left: $padding;
+}
+
+// col
+@for $i from 0 through $grid {
+  .col-#{$i} {
+    flex: 0 0 percentage($i/$grid);
+    width: 100%;
   }
+}
 
-  // 布局
-  @for $i from 0 through 10 {
-    > .col-#{$i}, > .col-xs-#{$i}, > .col-sm-#{$i}, > .col-md-#{$i}, > .col-lg-#{$i} {
-      flex: $i;
-      padding-left: 15px;
-      padding-right: 15px;
-    }
+// offset
+@for $i from 0 through $grid {
+  .offset-#{$i} {
+    margin-left: percentage($i/$grid);
   }
+}
 
-  // 放大
-  @for $i from 0 through 10 {
-    > .grow-#{$i} {
-      flex-grow: $i
-    }
+// pull
+@for $i from 0 through $grid {
+  .pull-#{$i} {
+    right: percentage($i/$grid);
   }
+}
 
-  // 交叉轴对齐方式
-  @each $alignItemWay in $align-item-list {
-    &.align-item-#{$alignItemWay} {
-      align-items: $alignItemWay
-    }
+// push
+@for $i from 0 through $grid {
+  .push-#{$i} {
+    left: percentage($i/$grid);
   }
+}
 
-  // 多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用
-  @each $alignContentWay in $align-content-list {
-    &.align-content-#{$alignContentWay} {
-      align-items: $alignContentWay
-    }
+// align-items
+@each $alignItemWay in $align-item-list {
+  .align-item-#{$alignItemWay} {
+    align-items: $alignItemWay
   }
+}
 
-  // 主轴的对齐方式
-  @each $justifyItemWay in $justify-content-list {
-    &.justify-content-#{$justifyItemWay} {
-      align-items: $justifyItemWay
-    }
+// 多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用
+@each $alignContentWay in $align-content-list {
+  .align-content-#{$alignContentWay} {
+    align-content: $alignContentWay
   }
+}
 
-  // 缩小比例 default:1
-  @for $i from 0 through 10 {
-    > .shrink#{$i} {
-      flex-shrink: $i
-    }
+@each $justifyContentWay in $justify-content-list {
+  .justify-content-#{$justifyContentWay} {
+    justify-content: $justifyContentWay
   }
+}
 
-  // 响应式
-  // xs
-  @media screen and (max-width: $screen-xs-max) {
-    @for $i from 0 through 10 {
-      > .col-xs-#{$i} {
-        display: block;
-      }
-      > .col-sm-#{$i} {
-        display: none !important;
-      }
-      > .col-md-#{$i} {
-        display: none !important;
-      }
-      > .col-lg-#{$i} {
-        display: none !important;
-      }
-    }
+// 放大
+@for $i from 0 through $grid {
+  .grow-#{$i} {
+    flex-grow: $i
   }
+}
 
-  // sm
-  @media screen and (min-width: $screen-sm-min) {
-    @for $i from 0 through 10 {
-      > .col-xs-#{$i} {
-        display: none !important;
-      }
-      > .col-sm-#{$i} {
-        display: block;
-      }
-      > .col-md-#{$i} {
-        display: none !important;
-      }
-      > .col-lg-#{$i} {
-        display: none !important;
-      }
-    }
+// 缩小比例 default:1
+@for $i from 0 through $grid {
+  .shrink#{$i} {
+    flex-shrink: $i
   }
+}
 
-  // md
-  @media screen and (min-width: $screen-md-min) {
-    @for $i from 0 through 10 {
-      > .col-xs-#{$i} {
-        display: none !important;
-      }
-      > .col-sm-#{$i} {
-        display: none !important;
-      }
-      > .col-md-#{$i} {
-        display: block;
-      }
-      > .col-lg-#{$i} {
-        display: none !important;
-      }
-    }
+// 换行
+@each $wrapWay in $wrap-list {
+  .#{$wrapWay} {
+    flex-wrap: $wrapWay
   }
-
-  // lg
-  @media screen and (min-width: $screen-lg-min) {
-    @for $i from 0 through 10 {
-      > .col-xs-#{$i} {
-        display: none !important;
-      }
-      > .col-sm-#{$i} {
-        display: none !important;
-      }
-      > .col-md-#{$i} {
-        display: none !important;
-      }
-      > .col-lg-#{$i} {
-        display: block;
-      }
-    }
-  }
-
 }
