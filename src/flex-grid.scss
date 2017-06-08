@@ -14,10 +14,14 @@ $screen-lg-min: 1200px;
 
 .row {
   flex-direction: row;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .col {
   flex-direction: column;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .col, .row {
@@ -43,8 +47,10 @@ $screen-lg-min: 1200px;
 
   // 布局
   @for $i from 0 through 10 {
-    > .col-#{$i}, > .col-xs-#{$i}, > .col-md-#{$i}, > .col-lg-#{$i} {
-      flex: $i
+    > .col-#{$i}, > .col-xs-#{$i}, > .col-sm-#{$i}, > .col-md-#{$i}, > .col-lg-#{$i} {
+      flex: $i;
+      padding-left: 15px;
+      padding-right: 15px;
     }
   }
 
@@ -103,7 +109,7 @@ $screen-lg-min: 1200px;
   }
 
   // sm
-  @media screen and (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+  @media screen and (min-width: $screen-sm-min) {
     @for $i from 0 through 10 {
       > .col-xs-#{$i} {
         display: none !important;
@@ -121,7 +127,7 @@ $screen-lg-min: 1200px;
   }
 
   // md
-  @media screen and (min-width: $screen-md-min) and (max-width: $screen-lg-min) {
+  @media screen and (min-width: $screen-md-min) {
     @for $i from 0 through 10 {
       > .col-xs-#{$i} {
         display: none !important;
