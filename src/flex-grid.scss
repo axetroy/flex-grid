@@ -123,7 +123,7 @@ html {
 
 // 缩小比例 default:1
 @for $i from 0 through $grid {
-  .shrink#{$i} {
+  .shrink-#{$i} {
     flex-shrink: $i
   }
 }

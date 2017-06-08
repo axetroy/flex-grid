@@ -1,217 +1,110 @@
 @import "var";
 
-// xs
-@media screen and (max-width: $screen-xs-max) {
-  @for $i from 0 through $grid {
-    .col-xs-#{$i} {
-      flex: 0 0 percentage($i/$grid);
-      max-width: percentage($i/$grid);
+@each $query in $max-query {
+  @media screen and (max-width: $screen-xs-max) {
+    @for $i from 0 through $grid {
+      .col-#{$query}-#{$i} {
+        flex: 0 0 percentage($i/$grid);
+        max-width: percentage($i/$grid);
+      }
+    }
+
+    @for $i from 0 through $grid {
+      .offset-#{$query}-#{$i} {
+        margin-left: percentage($i/$grid);
+      }
+    }
+
+    // pull
+    @for $i from 0 through $grid {
+      .pull-#{$query}-#{$i} {
+        right: percentage($i/$grid);
+      }
+    }
+
+    // push
+    @for $i from 0 through $grid {
+      .push-#{$query}-#{$i} {
+        left: percentage($i/$grid);
+      }
+    }
+
+    // grow
+    @for $i from 0 through $grid {
+      .grow-#{$query}-#{$i} {
+        flex-grow: $i
+      }
+    }
+
+    // 缩小比例 default:1
+    @for $i from 0 through $grid {
+      .shrink-#{$query}#{$i} {
+        flex-shrink: $i
+      }
+    }
+
+    @each $wrapWay in $wrap-list {
+      .#{$wrapWay}-#{$query} {
+        flex-wrap: $wrapWay
+      }
     }
   }
-
-  @for $i from 0 through $grid {
-    .offset-xs-#{$i} {
-      margin-left: percentage($i/$grid);
-    }
-  }
-
-  // pull
-  @for $i from 0 through $grid {
-    .pull-xs-#{$i} {
-      right: percentage($i/$grid);
-    }
-  }
-
-  // push
-  @for $i from 0 through $grid {
-    .push-xs-#{$i} {
-      left: percentage($i/$grid);
-    }
-  }
-
-  // grow
-  @for $i from 0 through $grid {
-    .grow-xs-#{$i} {
-      flex-grow: $i
-    }
-  }
-
-  // 缩小比例 default:1
-  @for $i from 0 through $grid {
-    .shrink-xs#{$i} {
-      flex-shrink: $i
-    }
-  }
-
-  @each $wrapWay in $wrap-list {
-    .#{$wrapWay}-xs {
-      flex-wrap: $wrapWay
-    }
-  }
-
 }
 
-// sm
-@media screen and (min-width: $screen-sm-min) {
-  @for $i from 0 through $grid {
-    .col-sm-#{$i} {
-      flex: 0 0 percentage($i/$grid);
-      max-width: 0 0 percentage($i/$grid);
+@each $query-name in $min-query-name {
+  $index: index($min-query-name, $query-name);
+  $screen-min-width: nth($min-query-screen-width, $index);
+  $container-width: nth($min-query-container-width, $index);
+  @media screen and (min-width: $screen-min-width) {
+    @for $i from 0 through $grid {
+      .col-#{$query-name}-#{$i} {
+        flex: 0 0 percentage($i/$grid);
+        max-width: 0 0 percentage($i/$grid);
+      }
+    }
+
+    @for $i from 0 through $grid {
+      .offset-#{$query-name}-#{$i} {
+        margin-left: percentage($i/$grid);
+      }
+    }
+
+    // pull
+    @for $i from 0 through $grid {
+      .pull-#{$query-name}-#{$i} {
+        right: percentage($i/$grid);
+      }
+    }
+
+    // push
+    @for $i from 0 through $grid {
+      .push-#{$query-name}-#{$i} {
+        left: percentage($i/$grid);
+      }
+    }
+
+    // grow
+    @for $i from 0 through $grid {
+      .grow-#{$query-name}-#{$i} {
+        flex-grow: $i
+      }
+    }
+
+    // 缩小比例 default:1
+    @for $i from 0 through $grid {
+      .shrink-#{$query-name}-#{$i} {
+        flex-shrink: $i
+      }
+    }
+
+    @each $wrapWay in $wrap-list {
+      .#{$wrapWay}-#{$query-name} {
+        flex-wrap: $wrapWay
+      }
+    }
+
+    .container {
+      width: $container-width;
     }
   }
-
-  @for $i from 0 through $grid {
-    .offset-sm-#{$i} {
-      margin-left: percentage($i/$grid);
-    }
-  }
-
-  // pull
-  @for $i from 0 through $grid {
-    .pull-sm-#{$i} {
-      right: percentage($i/$grid);
-    }
-  }
-
-  // push
-  @for $i from 0 through $grid {
-    .push-sm-#{$i} {
-      left: percentage($i/$grid);
-    }
-  }
-
-  // grow
-  @for $i from 0 through $grid {
-    .grow-sm-#{$i} {
-      flex-grow: $i
-    }
-  }
-
-  // 缩小比例 default:1
-  @for $i from 0 through $grid {
-    .shrink-sm#{$i} {
-      flex-shrink: $i
-    }
-  }
-
-  @each $wrapWay in $wrap-list {
-    .#{$wrapWay}-sm {
-      flex-wrap: $wrapWay
-    }
-  }
-
-  .container {
-    width: 750px;
-  }
-
-}
-
-// md
-@media screen and (min-width: $screen-md-min) {
-  @for $i from 0 through $grid {
-    .col-md-#{$i} {
-      flex: 0 0 percentage($i/$grid);
-      max-width: 0 0 percentage($i/$grid);
-    }
-  }
-
-  @for $i from 0 through $grid {
-    .offset-md-#{$i} {
-      margin-left: percentage($i/$grid);
-    }
-  }
-
-  // pull
-  @for $i from 0 through $grid {
-    .pull-md-#{$i} {
-      right: percentage($i/$grid);
-    }
-  }
-
-  // push
-  @for $i from 0 through $grid {
-    .push-md-#{$i} {
-      left: percentage($i/$grid);
-    }
-  }
-
-  // grow
-  @for $i from 0 through $grid {
-    .grow-md-#{$i} {
-      flex-grow: $i
-    }
-  }
-
-  // 缩小比例 default:1
-  @for $i from 0 through $grid {
-    .shrink-md#{$i} {
-      flex-shrink: $i
-    }
-  }
-
-  @each $wrapWay in $wrap-list {
-    .#{$wrapWay}-md {
-      flex-wrap: $wrapWay
-    }
-  }
-
-  .container {
-    width: 970px;
-  }
-
-}
-
-// lg
-@media screen and (min-width: $screen-lg-min) {
-  @for $i from 0 through $grid {
-    .col-lg-#{$i} {
-      flex: 0 0 percentage($i/$grid);
-      max-width: 0 0 percentage($i/$grid);
-    }
-  }
-
-  @for $i from 0 through $grid {
-    .offset-lg-#{$i} {
-      margin-left: percentage($i/$grid);
-    }
-  }
-
-  // pull
-  @for $i from 0 through $grid {
-    .pull-lg-#{$i} {
-      right: percentage($i/$grid);
-    }
-  }
-
-  // push
-  @for $i from 0 through $grid {
-    .push-lg-#{$i} {
-      left: percentage($i/$grid);
-    }
-  }
-
-  // grow
-  @for $i from 0 through $grid {
-    .grow-lg-#{$i} {
-      flex-grow: $i
-    }
-  }
-
-  // 缩小比例 default:1
-  @for $i from 0 through $grid {
-    .shrink-lg#{$i} {
-      flex-shrink: $i
-    }
-  }
-
-  @each $wrapWay in $wrap-list {
-    .#{$wrapWay}-lg {
-      flex-wrap: $wrapWay
-    }
-  }
-
-  .container {
-    width: 1170px;
-  }
-
 }

@@ -16,3 +16,7 @@ $padding: 15px;
 $grid: 24;
 
 $query: xs sm md lg;
+$max-query: xs;
+$min-query-name: sm md lg;
+$min-query-screen-width: $screen-sm-min $screen-md-min $screen-lg-min;
+$min-query-container-width: 750px 970px 1170px;
