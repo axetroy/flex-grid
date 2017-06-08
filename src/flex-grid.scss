@@ -7,6 +7,9 @@ $align-content-list: flex-start flex-end center space-between space-around stret
 
 $justify-content-list: flex-start flex-end center space-between space-around;
 
+$screen-xs-max: 768px;
+$screen-sm-min: 768px;
+
 .row {
   flex-direction: row;
 }
@@ -38,7 +41,7 @@ $justify-content-list: flex-start flex-end center space-between space-around;
 
   // 布局
   @for $i from 0 through 10 {
-    > .col-#{$i} {
+    > .col-#{$i}, > .col-xs-#{$i}, > .col-md-#{$i}, > .col-lg-#{$i} {
       flex: $i
     }
   }
@@ -75,6 +78,22 @@ $justify-content-list: flex-start flex-end center space-between space-around;
   @for $i from 0 through 10 {
     > .shrink#{$i} {
       flex-shrink: $i
+    }
+  }
+
+  // 响应式
+  @media (max-width: $screen-xs-max) {
+    @for $i from 0 through 10 {
+      > .col-xs-#{$i} {
+        display: none !important;
+      }
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    @for $i from 0 through 10 {
+      > .col-sm-#{$i} {
+        display: block;
+      }
     }
   }
 
