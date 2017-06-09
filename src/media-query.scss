@@ -1,7 +1,13 @@
 @import "var";
 
-@each $query in $max-query {
-  @media screen and (max-width: $screen-xs-max) {
+
+
+@each $query in $min-query-name {
+  $index: index($min-query-name, $query);
+  $screen-width: nth($min-query-screen-width, $index);
+  $container-width: nth($min-query-container-width, $index);
+
+  @mixin query(){
     @for $i from 0 through $grid {
       .col-#{$query}-#{$i} {
         flex: 0 0 percentage($i/$grid);
@@ -38,8 +44,15 @@
 
     // 缩小比例 default:1
     @for $i from 0 through $grid {
-      .shrink-#{$query}#{$i} {
+      .shrink-#{$query}-#{$i} {
         flex-shrink: $i
+      }
+    }
+
+    // 排序
+    @for $i from 0 through $grid {
+      .order-#{$query}-#{$i} {
+        order: $i
       }
     }
 
@@ -49,62 +62,18 @@
       }
     }
   }
-}
 
-@each $query-name in $min-query-name {
-  $index: index($min-query-name, $query-name);
-  $screen-min-width: nth($min-query-screen-width, $index);
-  $container-width: nth($min-query-container-width, $index);
-  @media screen and (min-width: $screen-min-width) {
-    @for $i from 0 through $grid {
-      .col-#{$query-name}-#{$i} {
-        flex: 0 0 percentage($i/$grid);
-        max-width: 0 0 percentage($i/$grid);
-      }
+  @if $screen-width < 0 {
+    @media screen and (max-width: abs($screen-width)) {
+      @include query();
     }
+  } @else {
+    @media screen and (min-width: $screen-width) {
+      @include query();
 
-    @for $i from 0 through $grid {
-      .offset-#{$query-name}-#{$i} {
-        margin-left: percentage($i/$grid);
+      .container {
+        width: $container-width;
       }
-    }
-
-    // pull
-    @for $i from 0 through $grid {
-      .pull-#{$query-name}-#{$i} {
-        right: percentage($i/$grid);
-      }
-    }
-
-    // push
-    @for $i from 0 through $grid {
-      .push-#{$query-name}-#{$i} {
-        left: percentage($i/$grid);
-      }
-    }
-
-    // grow
-    @for $i from 0 through $grid {
-      .grow-#{$query-name}-#{$i} {
-        flex-grow: $i
-      }
-    }
-
-    // 缩小比例 default:1
-    @for $i from 0 through $grid {
-      .shrink-#{$query-name}-#{$i} {
-        flex-shrink: $i
-      }
-    }
-
-    @each $wrapWay in $wrap-list {
-      .#{$wrapWay}-#{$query-name} {
-        flex-wrap: $wrapWay
-      }
-    }
-
-    .container {
-      width: $container-width;
     }
   }
 }
