@@ -1,3 +1,12 @@
 # flex-grid
 
-flex box layout CSS library, more purer &amp; easier. base on Flex Box.
+flex box layout system.
+
+
+### dev
+
+```bash
+git clone https://github.com/axetroy/flex-grid.git && cd ./flex-grid
+yarn
+yarn start
+```

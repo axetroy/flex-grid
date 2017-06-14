@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .show-grid {
+      margin-bottom: 15px;
+    }
+
+    .show-grid [class^=col-] {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: rgba(86, 61, 124, .15);
+      border: 1px solid rgba(86, 61, 124, .2);
+    }
+  </style>
+<link href="flex-grid.css" rel="stylesheet"></head>
+<body>
+
+<div class="container">
+
+  <h2>Basic Layout</h2>
+
+  <div class="row show-grid">
+    <div class="col-12">
+      col-12
+    </div>
+    <div class="col-12">
+      col-12
+    </div>
+  </div>
+
+  <div class="row show-grid">
+    <div class="col-8 offset-4">
+      col-8 offset-4
+    </div>
+    <div class="col-8">
+      col-8
+    </div>
+  </div>
+
+  <div class="row show-grid">
+    <div class="col-4 offset-8">
+      col-4 offset-8
+    </div>
+    <div class="col-4">
+      col-4
+    </div>
+  </div>
+
+  <div class="row show-grid">
+    <div class="col-4 offset-20">
+      col-4 offset-20
+    </div>
+  </div>
+
+  <h2>Media Query</h2>
+
+  <div class="row show-grid">
+    <div class="col-xs-24 col-sm-16 col-md-12 col-lg-8 offset-xs-0 offset-sm-4 offset-md-6 offset-lg-8">
+      col-xs-24 col-sm-16 col-md-12 col-lg-8 offset-xs-0 offset-sm-4 offset-md-6 offset-lg-8
+    </div>
+  </div>
+
+  <div class="row show-grid">
+    <div class="col-8 push-8">
+      col-8 push-8
+    </div>
+  </div>
+
+  <div class="row show-grid">
+    <div class="col-8 offset-8 pull-8">
+      col-8 offset-8 pull-8
+    </div>
+  </div>
+
+  <div class="row justify-content-flex-start align-item-flex-start show-grid" style="min-height: 50px">
+    row justify-content-flex-start align-item-flex-start
+  </div>
+
+  <div class="row justify-content-center align-item-center show-grid" style="min-height: 50px">
+    row justify-content-center align-item-center
+  </div>
+
+  <div class="row middle show-grid" style="min-height: 50px">
+    row middle show-grid
+  </div>
+
+  <div class="row justify-content-flex-end align-item-flex-end show-grid" style="min-height: 50px">
+    row justify-content-flex-end align-item-flex-end
+  </div>
+
+</div>
+
+
+<script type="text/javascript" src="main.js"></script></body>
+</html>
