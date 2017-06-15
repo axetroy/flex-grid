@@ -33,9 +33,8 @@ module.exports = {
                   autoprefixer({
                     browsers: ['last 2 versions'],
                     cascade: false
-                  }),
-                  cssnano()
-                ]
+                  })
+                ].concat(isProduction ? [cssnano()] : [])
               }
             },
             'sass-loader'

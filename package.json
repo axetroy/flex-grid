@@ -1,12 +1,13 @@
 {
   "name": "@axetroy/flex-grid",
   "version": "0.1.0",
-  "description": "",
+  "description": "flex box layout system. purer & easier.",
   "main": "index.js",
+  "style": "./dist/flex-grid.css",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && webpack --config webpack.config.js",
-    "start": "rimraf dist && webpack-dev-server --config webpack.config.js",
+    "start": "webpack-dev-server --config webpack.config.js",
     "deploy": "gh-pages -d ./dist"
   },
   "repository": {
