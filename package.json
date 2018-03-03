@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/axetroy/flex-grid#readme",
   "devDependencies": {
-    "autoprefixer": "^7.1.1",
+    "autoprefixer": "^8.1.0",
     "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^2.1.2",
